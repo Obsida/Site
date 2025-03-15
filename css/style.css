@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Manrope;
+    color: aliceblue;
+}
+
+body {
+    background-color: rgba(6, 3, 15, 1);
+}
+
+@font-face {
+    font-family: Manrope;
+    src: url(../fonts/Manrope-Medium.ttf);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+header::before {
+    content: "";
+    display: block;
+    height: 5px;
+}
+
+footer::before {
+    content: "";
+    display: block;
+    height: 20px;
+}
+
+footer::after {
+    content: "";
+    display: block;
+    height: 20px;
+}
+
+.header-lvl-one,
+.header-lvl-two {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.header-lvl-two div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.money-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-header {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-header li a {
+    text-decoration: none;
+}
+
+.logo-header {
+    display: flex;
+
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.like-card-header {
+    display: flex;
+    gap: 10px;
+}
+
+.card-all {
+    display: flex;
+    justify-self: center;
+    width: 90%;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 5vh;
+}
+
+.card-sale-cost {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-sale-cost p {
+    color: #77be1d;
+}
+
+.card-sale-cost span {
+    color: #ffffff36;
+}
+
+.card_other-info {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10vh;
+}
+
+.top img {
+    height: 30px;
+    width: 30px;
+}
+
+.requisites-icon,
+.about {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    gap: 40px;
+    justify-content: center;
+}
+
+.about {
+    gap: 200px;
+}
+
+.about-us,
+.offer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-header {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.search {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(19, 16, 27, 1);
+    border-radius: 10px;
+    background: url('../image/Union.svg') no-repeat right center;
+    background-color: rgba(19, 16, 27, 1);
+
+}
+
+.block-one {
+    display: flex;
+    justify-content: left;
+    justify-self: center;
+    background-image: url('../image/NFC.svg');
+    background-size: cover;
+    width: 80%;
+    height: 80vh;
+    gap: 20px;
+}
+
+.block-one-name {
+    padding-left: 10vh;
+    padding-top: 10vh;
+}
+
+.button-card {
+    display: flex;
+    gap: 15px;
+
+}
+
+.button-card #save-btn {
+    color: white;
+    height: 6vh;
+    width: 20vh;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border: rgb(255, 255, 255, 0.1);
+}
+
+.button-card #card-btn {
+    color: black;
+    background-color: white;
+    height: 6vh;
+    width: 20vh;
+    border-radius: 20px;
+    border: white;
+}
+
+.cost {
+    display: flex;
+    gap: 15px;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.cost #green {
+    color: #77be1d;
+}
+
+.cost span {
+    color: #ffffff36;
+}
+.nav-container {
+    display: flex;
+    gap: 10px;
+    padding-left: 50px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(59, 59, 59);
+}
+
+.nav-item {
+    position: relative;
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease; 
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+.nav-item.active::after {
+    width: 100%;
+}
+
+.category {
+    padding-bottom: 10vh;
+}
+.catalog_btn {
+    color: rgba(54, 110, 220, 1);
+    background-color: rgba(6, 3, 15, 1);
+    border: rgba(255, 255, 255, 0.1) solid 1px;
+    border-radius: 10px;
+    width: 95%;
+    height: 100%;
+    font-size: large;
+}
+.catalog_btn_div {
+    display: flex;
+    justify-content: center;
+    height: 8vh;
+    align-items: center;
+    width: 100%;
+}
+.disc {
+    color: rgb(135, 188, 64);
+}
+
+
