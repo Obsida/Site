@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
+?>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +24,13 @@
                 <li><a href="">Накопительная</a></li>
                 <li><a href="">Заработай</a></li>
             </ul>
-            <div class="user-header">
-                <p>Hanzen Rules</p>
-                <img src="./image/avatar.svg" alt="">
+            <div>
+                <form class="user-header" action="http://Login.php">
+                    <a class="user-header" href="Login.php">
+                        <p class="name-user">Не авторизован</p>
+                        <img src="./image/avatar.svg" alt="">
+                    </a>
+                </form>
             </div>
         </div>
         <div class="header-lvl-two">
