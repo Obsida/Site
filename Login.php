@@ -14,16 +14,8 @@
         <div class="input-group">
         <input
             required=""
-            placeholder="Username"
-            id="username name="
-            type="text"
-        />
-        <div class="input-group">
-        <input
-            required=""
-            placeholder="Name"
-            name="name"
-            id="name"
+            placeholder="email"
+            id="email"
             type="text"
         />
         <div class="input-group">
