@@ -22,10 +22,11 @@ header {
     
 }
 .name-user{
-    width: 13ch;
+    width: 15ch;
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis;
+    text-align: right;
 }
 
 header::before {
@@ -106,7 +107,7 @@ footer::after {
 .card-sale-cost {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: end;
 }
 
 .card-sale-cost p {
@@ -181,6 +182,7 @@ footer::after {
     width: 80%;
     height: 80vh;
     gap: 20px;
+    border-radius: 20px ;
 }
 
 .block-one-name {
@@ -215,8 +217,7 @@ footer::after {
 .cost {
     display: flex;
     gap: 15px;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    align-items:endx;
 }
 
 .cost #green {

@@ -1,14 +1,12 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Manrope;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   color: aliceblue;
 }
 
-@font-face {
-  font-family: Manrope;
-  src: url(../fonts/Manrope-Medium.ttf);
-}
 
 .login-container {
   padding: 40px;
@@ -20,8 +18,6 @@
 
 body {
   background-color: rgba(6, 3, 15, 1);
-  font-family: Manrope;
-  color: aliceblue;
 }
 
 
@@ -41,8 +37,6 @@ body {
   font-weight: 400;
   font-size: 15px;
   margin-bottom: 15px;
-  font-family: Manrope;
-  color: aliceblue;
 }
 
 .input-group {

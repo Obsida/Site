@@ -1,5 +1,12 @@
 <?php
-
+require_once "method/connectdb.php";
+$name = "Не авторизованн";
+if (isset($_COOKIE['email'])) {
+    $email = $_COOKIE['email'];
+    $query_user = mysqli_query($conn, "SELECT * FROM `Customer` WHERE `email` = '$email'");
+    $list = mysqli_fetch_array($query_user);
+    $name = $list['name_customer'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -9,7 +16,6 @@
     <title>Playnchill</title>
 </head>
 <link rel="stylesheet" href="css/style.css">
-
 <body>
     <header>
         <div class="header-lvl-one">
@@ -24,13 +30,11 @@
                 <li><a href="">Накопительная</a></li>
                 <li><a href="">Заработай</a></li>
             </ul>
-            <div>
-                <form class="user-header" action="http://Login.php">
-                    <a class="user-header" href="Login.php">
-                        <p class="name-user">Не авторизован</p>
-                        <img src="./image/avatar.svg" alt="">
-                    </a>
-                </form>
+            <div> 
+                <a class="user-header" href="Login.php">
+                    <p class="name-user"><?=$name?></p>
+                    <img src="./image/avatar.svg" alt="">
+                </a>
             </div>
         </div>
         <div class="header-lvl-two">
@@ -58,10 +62,10 @@
             <H1>Тотальная война нового поколения началась!</H1>
             <H1>Сыграйте в Battlefield™ 2042 уже сегодня.</H1>
             <H1>Адаптируйтесь и процветайте!</H1>
-            <div class="cost">
+            <div class="cost" >
                 <h2>16 400₽</h2>
-                <h2 id="green">-15%</h2>
-                <span>16 400₽</span>
+                <h3 id="green">-15%</h3>
+                <h3><span>16 400₽</span></h3>
             </div>
             <div class="button-card">
                 <button id="card-btn">В корзину</button>

@@ -6,15 +6,20 @@
     <title>Вход</title>
 </head>
 <link rel="stylesheet" href="css/login-style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
 <body>
     <div class="login-container">
-    <form class="login-form">
+    <form class="login-form" action="method/Login-db.php" method="post">
         <p class="heading">Login</p>
         <p class="paragraph">Login to your account</p>
         <div class="input-group">
         <input
             required=""
             placeholder="email"
+            name="email"
             id="email"
             type="text"
         />

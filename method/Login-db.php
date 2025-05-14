@@ -11,16 +11,12 @@
             $hashpass = mysqli_fetch_array($query_check_user);
             if(password_verify($password,$hashpass['password']))
             {
-                setcookie('email', $email, time() + 60*60*24) ;
-                setcookie('password', $password, time() + 60*60*24) ;
-                    echo "<script>
-                    location.href='account.php';
-                </script>";
+                setcookie('email', $email, time() + 60*60*24, "/");
+                sleep(0.5);
+                header("Location: http://site");
             }
             else{
-                echo "<script>
-                    location.href='index.php';
-                </script>";
+                header("Location: http://site/Login.php");
             }
         }
         else
