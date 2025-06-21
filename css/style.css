@@ -51,7 +51,7 @@ footer::after {
 .header-lvl-two {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 85%;
 }
 
 .header-lvl-two div {
@@ -80,7 +80,6 @@ footer::after {
 
 .logo-header {
     display: flex;
-
 }
 
 .user-header {
@@ -102,6 +101,47 @@ footer::after {
     align-items: center;
     gap: 30px;
     padding-bottom: 5vh;
+    align-items: start;
+}
+.categorydiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 5vh;
+    align-items: start;
+}
+.card{
+    width: 18vw;
+    height: 65vh;
+    transition: border 0.2s ease; 
+}
+.card img{
+    justify-content: center;
+}
+.card ul{
+    display: flex;
+    justify-content:center;
+    gap: 50px;
+}
+.card:hover {
+  border: 2px solid white;
+  border-radius: 20px; 
+}
+.categorydiv img{
+    border-radius: 20px; 
+    width: 18vw;
+    height: 45vh;
+}
+.card-all img
+{
+    border-radius: 5px;
+    width: 17vw;
+    height: 45vh;
 }
 
 .card-sale-cost {
@@ -193,7 +233,6 @@ footer::after {
 .button-card {
     display: flex;
     gap: 15px;
-
 }
 
 .button-card #save-btn {
@@ -217,7 +256,8 @@ footer::after {
 .cost {
     display: flex;
     gap: 15px;
-    align-items:endx;
+    align-items:end;
+    padding: 20px;
 }
 
 .cost #green {
@@ -250,7 +290,7 @@ footer::after {
     width: 0;
     height: 2px;
     background-color: white;
-    transition: width 0.3s ease; 
+    transition: width 0.3s ease;    
 }
 
 .nav-item:hover::after {

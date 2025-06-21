@@ -11,8 +11,8 @@
             $hashpass = mysqli_fetch_array($query_check_user);
             if(password_verify($password,$hashpass['password']))
             {
-                setcookie('email', $email, time() + 60*60*24, "/");
-                sleep(0.5);
+                setcookie('id', $hashpass['id_customer'], time() + 60*60*24, "/");
+
                 header("Location: http://site");
             }
             else{

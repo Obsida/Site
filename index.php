@@ -1,21 +1,32 @@
 <?php
 require_once "method/connectdb.php";
-$name = "Не авторизованн";
-if (isset($_COOKIE['email'])) {
-    $email = $_COOKIE['email'];
-    $query_user = mysqli_query($conn, "SELECT * FROM `Customer` WHERE `email` = '$email'");
+
+$name = "Не авторизован";
+$redirectUrl = "Login.php";
+
+if (isset($_COOKIE['id'])) {
+    $id = $_COOKIE['id'];
+    $query_user = mysqli_query($conn, "SELECT * FROM `Customer` WHERE `id_customer` = '$id'");
     $list = mysqli_fetch_array($query_user);
-    $name = $list['name_customer'];
+
+    if ($list) {
+        $name = $list['name_customer'];
+        $redirectUrl = "Account.php";
+    }
 }
+$query_check_user = mysqli_query($conn, "SELECT * FROM `Game`");
+$list = mysqli_fetch_all($query_check_user);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playnchill</title>
 </head>
 <link rel="stylesheet" href="css/style.css">
+
 <body>
     <header>
         <div class="header-lvl-one">
@@ -30,9 +41,9 @@ if (isset($_COOKIE['email'])) {
                 <li><a href="">Накопительная</a></li>
                 <li><a href="">Заработай</a></li>
             </ul>
-            <div> 
-                <a class="user-header" href="Login.php">
-                    <p class="name-user"><?=$name?></p>
+            <div>
+                <a class="user-header" href="<?= $redirectUrl ?>">
+                    <p class="name-user"><?= $name ?></p>
                     <img src="./image/avatar.svg" alt="">
                 </a>
             </div>
@@ -62,7 +73,7 @@ if (isset($_COOKIE['email'])) {
             <H1>Тотальная война нового поколения началась!</H1>
             <H1>Сыграйте в Battlefield™ 2042 уже сегодня.</H1>
             <H1>Адаптируйтесь и процветайте!</H1>
-            <div class="cost" >
+            <div class="cost">
                 <h2>16 400₽</h2>
                 <h3 id="green">-15%</h3>
                 <h3><span>16 400₽</span></h3>
@@ -74,76 +85,37 @@ if (isset($_COOKIE['email'])) {
         </div>
     </div>
     <div class="top">
-        <h1 >Топ 5</h1>
+        <h1>Топ 5</h1>
         <img src="./image/Vector (3).png" alt="">
     </div>
-    
+
     <div class="card-all">
-        <div class="card">
-            <img src="./image/game1.svg" alt="">
-            <div class="card-sale-cost">
-                <h2>16 400₽</h2>
-                <p>-15%</p>
-                <span>16 400₽</span>
+        <?php $count = 0; ?>
+        <?php foreach ($list as $item): ?>
+            <?php if ($count >= 5)
+                break; ?>
+
+            <div class="card">
+                <?php
+                $imageData = $item[8];
+                $base64Image = base64_encode($imageData);
+                ?>
+                <img src="data:image/jpeg;base64,<?= $base64Image ?>" alt="<?= $item[4] ?>">
+
+                <div class="card-sale-cost">
+                    <h2><?= $item[6] ?>₽</h2>
+                    <p>-15%</p>
+                    <span><?= $item[6] ?>₽</span>
+                </div>
+                <h1><?= $item[4] ?></h1>
+                <ul class="cart-other-info">
+                    <li>Ключ</li>
+                    <li>Аккаунт Steam</li>
+                </ul>
             </div>
-            <h1>Minecraft</h1>
-            <ul class="cart-other-info">
-                <li>Ключ</li>
-                <li>Аккаунт Steam</li>
-            </ul>
-        </div>
-        <div class="card">
-            <img src="./image/game1.svg" alt="">
-            <div class="card-sale-cost">
-                <h2>16 400₽</h2>
-                <p>-15%</p>
-                <span>16 400₽</span>
-            </div>
-            <h1>Minecraft</h1>
-            <ul class="cart-other-info">
-                <li>Ключ</li>
-                <li>Аккаунт Steam</li>
-            </ul>
-        </div>
-        <div class="card">
-            <img src="./image/game1.svg" alt="">
-            <div class="card-sale-cost">
-                <h2>16 400₽</h2>
-                <p>-15%</p>
-                <span>16 400₽</span>
-            </div>
-            <h1>Minecraft</h1>
-            <ul class="cart-other-info">
-                <li>Ключ</li>
-                <li>Аккаунт Steam</li>
-            </ul>
-        </div>
-        <div class="card">
-            <img src="./image/game1.svg" alt="">
-            <div class="card-sale-cost">
-                <h2>16 400₽</h2>
-                <p>-15%</p>
-                <span>16 400₽</span>
-            </div>
-            <h1>Minecraft</h1>
-            <ul class="cart-other-info">
-                <li>Ключ</li>
-                <li>Аккаунт Steam</li>
-            </ul>
-        </div>
-        <div class="card">
-            <img src="./image/game1.svg" alt="">
-            <div class="card-sale-cost">
-                <h2>16 400₽</h2>
-                <p>-15%</p>
-                <span>16 400₽</span>
-            </div>
-            <h1>Minecraft</h1>
-            <ul class="cart-other-info">
-                <li>Ключ</li>
-                <li>Аккаунт Steam</li>
-            </ul>
-        </div>
+
+            <?php $count++; ?>
+        <?php endforeach; ?>
     </div>
     <div class="category">
         <div class="nav-container">
@@ -153,8 +125,26 @@ if (isset($_COOKIE['email'])) {
             <div class="nav-item">Активация</div>
             <div class="nav-item">Прокачка</div>
         </div>
-        <div>
-
+        <div class="categorydiv">
+            <?php foreach ($list as $item): ?>
+                <div class="card">
+                    <?php
+                    $imageData = $item[8];
+                    $base64Image = base64_encode($imageData);
+                    ?>
+                    <img src="data:image/jpeg;base64,<?= $base64Image ?>" alt="<?=$item[4] ?>">
+                    <div class="card-sale-cost">
+                        <h2><?= $item[6] ?>₽</h2>
+                        <p>-15%</p>
+                        <span><?= $item[6] ?>₽</span>
+                    </div>
+                    <h1><?= $item[4] ?></h1>
+                    <ul class="cart-other-info">
+                        <li>Ключ</li>
+                        <li>Аккаунт Steam</li>
+                    </ul>
+                </div>
+            <?php endforeach; ?>
         </div>
         <div class="catalog_btn_div">
             <button class="catalog_btn">Перейти в каталог</button>
@@ -165,11 +155,29 @@ if (isset($_COOKIE['email'])) {
             <h1 class="promo">Акции и скидки</h1>
             <h1 class="disc">%</h1>
         </div>
-        <div class="discounts">
-
+        <div class="categorydiv">
+            <?php foreach ($list as $item): ?>
+                <div class="card">
+                    <?php
+                    $imageData = $item[8];
+                    $base64Image = base64_encode($imageData);
+                    ?>
+                    <img src="data:image/jpeg;base64,<?= $base64Image ?>" alt="<?= $item[4] ?>">
+                    <div class="card-sale-cost">
+                        <h2><?= $item[6] ?>₽</h2>
+                        <p>-15%</p>
+                        <span><?= $item[6] ?>₽</span>
+                    </div>
+                    <h1><?= $item[4] ?></h1>
+                    <ul class="cart-other-info">
+                        <li>Ключ</li>
+                        <li>Аккаунт Steam</li>
+                    </ul>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
-    
+
 
 
     <footer>
@@ -195,7 +203,7 @@ if (isset($_COOKIE['email'])) {
             <img src="./image/WebMoney.svg" alt="">
             <img src="./image/google.svg" alt="">
         </div>
-        
+
     </footer>
 </body>
 
