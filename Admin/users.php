@@ -1,30 +1,31 @@
 <?php
 require "./../method/connectdb.php";
-
 if (isset($_GET['toggle'])) {
-    $id_customer = $_GET['toggle'];
+    $id_customer = mysqli_real_escape_string($conn, $_GET['toggle']);
+    $sql = "SELECT Activity FROM Customer WHERE id_customer = '$id_customer'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $new_activity = $row['Activity'] ? 0 : 1;
 
-    $stmt = $conn->prepare("SELECT Activity FROM Customer WHERE id_customer = ?");
-    $stmt->bind_param("i", $id_customer);
-    $stmt->execute();
-    $stmt->bind_result($currentStatus);
-    $stmt->fetch();
-    $stmt->close(); 
-
-    $newStatus = ($currentStatus == 1) ? 0 : 1;
-
-    $stmt = $conn->prepare("UPDATE Customer SET Activity = ? WHERE id_customer = ?");
-    $stmt->bind_param("ii", $newStatus, $id_customer);
-    $stmt->execute();
-    $stmt->close(); 
+    $sql = "UPDATE Customer SET Activity = $new_activity WHERE id_customer = '$id_customer'";
+    $conn->query($sql);
 }
 
-// Обработка удаления
-if (isset($_GET['delete'])) {
-    $id_customer = $_GET['delete'];
-    $stmt = $conn->prepare("DELETE FROM Customer WHERE id_customer = ?");
-    $stmt->bind_param("i", $id_customer);
-    $stmt->execute();
+if (isset($_POST['edit_user'])) {
+    $id_customer = mysqli_real_escape_string($conn, $_POST['id_customer']);
+    $name_customer = mysqli_real_escape_string($conn, $_POST['name_customer']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $role_id = mysqli_real_escape_string($conn, $_POST['role_id']);
+    $activity = isset($_POST['activity']) ? 1 : 0;
+
+    $sql = "UPDATE Customer 
+            SET name_customer = '$name_customer', 
+                email = '$email', 
+                role_id = '$role_id',
+                Activity = $activity
+            WHERE id_customer = '$id_customer'";
+
+    $conn->query($sql);
 }
 ?>
 
@@ -46,7 +47,6 @@ if (isset($_GET['delete'])) {
         <th>Email</th>
         <th>Роль</th>
         <th>Активность</th>
-        <th>Действия</th>
     </tr>
 
     <?php
@@ -65,9 +65,6 @@ if (isset($_GET['delete'])) {
             <a href="?toggle=<?= $row['id_customer'] ?>">
                 <?= $row['Activity'] ? '✅ Активен' : '❌ Неактивен' ?>
             </a>
-        </td>
-        <td>
-            <a href="?delete=<?= $row['id_customer'] ?>" onclick="return confirm('Вы уверены?')">Удалить</a>
         </td>
     </tr>
     <?php endwhile; ?>
